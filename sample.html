@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script type="text/javascript" src="excelclipboardtomarkdown.js"></script>
+    </head>
+    <body>
+        <script>
+         function getClipBoardText(e){
+             e.preventDefault();
+             var clipboardData = e.clipboardData;
+             if(clipboardData != null){
+                 var text = clipboardData.getData("text/plain");
+                 var ret = excelClipBoardToMarkdown(text);
+                 $('#paste').text(ret);
+             }
+         }
+         $(function(){
+             document.addEventListener("paste",getClipBoardText);
+         });
+        </script>
+        <h1>ExcelからコピーペーストでMarkDown形式のデータを作るよ。<h1>
+            <div class="row" style="margin: 0 20px 0px 20px;">
+                <pre id="paste" class="col-12" style="min-height: 10em;background-color:antiquewhite;">
+CTRL+Vで、ここに表示されるよ。
+                </pre>
+            </div>
+    </body>
+</html>
